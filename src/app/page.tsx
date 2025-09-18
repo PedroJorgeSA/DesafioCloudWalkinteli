@@ -118,7 +118,7 @@ export default function Home() {
             <BrainCircuit className="h-10 w-10 text-primary" />
             <h1 className="text-2xl font-bold tracking-tight">Infinity pai</h1>
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">Seu sistema de agentes inteligentes.</p>
+        <p className="mt-2 text-sm text-muted-foreground">proposta de agents para o desafio inteli</p>
 
         <div className="mt-8 flex flex-1 flex-col gap-6">
           <h2 className="text-lg font-semibold">Nossos Agentes</h2>
