@@ -13,12 +13,12 @@ import {z} from 'genkit';
 const GetEducationalContentInputSchema = z.object({
   topic: z
     .string()
-    .describe('The topic for which educational content is requested.'),
+    .describe('O tópico para o qual o conteúdo educacional é solicitado.'),
   userProfile: z
     .string()
     .optional()
-    .default('SME')
-    .describe('The user profile, defaults to SME (Small and Medium Enterprise).'),
+    .default('PME')
+    .describe('O perfil do usuário, o padrão é PME (Pequena e Média Empresa).'),
 });
 export type GetEducationalContentInput = z.infer<
   typeof GetEducationalContentInputSchema
@@ -27,7 +27,7 @@ export type GetEducationalContentInput = z.infer<
 const GetEducationalContentOutputSchema = z.object({
   content: z
     .string()
-    .describe('The educational content tailored for the specified topic.'),
+    .describe('O conteúdo educacional adaptado para o tópico especificado.'),
 });
 export type GetEducationalContentOutput = z.infer<
   typeof GetEducationalContentOutputSchema
@@ -43,7 +43,7 @@ const prompt = ai.definePrompt({
   name: 'educationalContentPrompt',
   input: {schema: GetEducationalContentInputSchema},
   output: {schema: GetEducationalContentOutputSchema},
-  prompt: `You are a financial educator specializing in providing guidance to Small and Medium Enterprises. You will generate educational content on the following topic: {{{topic}}}. Focus on providing practical advice and insights. Frame your response as rules or concepts related to the requested topics to improve financial literacy, and do not give investment advice.`,
+  prompt: `Você é um educador financeiro especializado em fornecer orientação para Pequenas e Médias Empresas. Você irá gerar conteúdo educacional sobre o seguinte tópico: {{{topic}}}. Concentre-se em fornecer conselhos práticos e insights. Enquadre sua resposta como regras ou conceitos relacionados aos tópicos solicitados para melhorar a alfabetização financeira e não dê conselhos de investimento.`,
 });
 
 const getEducationalContentFlow = ai.defineFlow(

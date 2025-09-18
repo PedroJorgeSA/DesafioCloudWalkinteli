@@ -7,9 +7,9 @@ import { knowledgeCuration } from '@/ai/flows/knowledge-curation-for-infinite-pa
 type AgentName = 'aura' | 'nexus' | 'wise';
 
 const agentKeywords: Record<AgentName, string[]> = {
-  aura: ['fee', 'pix', 'withdraw', 'card machine', 'account', 'card', 'loan', 'support'],
-  nexus: ['analyze', 'analysis', 'sales', 'revenue', 'expenses', 'profit', 'data', 'report'],
-  wise: ['how to', 'calculate', 'management', 'planning', 'cash flow', 'margin', 'pricing', 'learn'],
+  aura: ['taxa', 'pix', 'saque', 'maquininha', 'conta', 'cartão', 'empréstimo', 'suporte'],
+  nexus: ['analisar', 'análise', 'vendas', 'receita', 'despesas', 'lucro', 'dados', 'relatório'],
+  wise: ['como', 'calcular', 'gestão', 'planejamento', 'fluxo de caixa', 'margem', 'preços', 'aprender'],
 };
 
 function classifyQuery(query: string): AgentName {
@@ -42,7 +42,7 @@ function classifyQuery(query: string): AgentName {
 
 export async function processQuery(message: string): Promise<{ agentName: AgentName; response: string }> {
   const agentName = classifyQuery(message);
-  let responseText = "I'm sorry, I couldn't process your request.";
+  let responseText = "Desculpe, não consegui processar sua solicitação.";
 
   try {
     switch (agentName) {
@@ -66,7 +66,7 @@ export async function processQuery(message: string): Promise<{ agentName: AgentN
     }
   } catch (error) {
     console.error(`Error processing query with agent ${agentName}:`, error);
-    responseText = "An error occurred while trying to get a response. Please try again later.";
+    responseText = "Ocorreu um erro ao tentar obter uma resposta. Por favor, tente novamente mais tarde.";
   }
 
   return { agentName, response: responseText };

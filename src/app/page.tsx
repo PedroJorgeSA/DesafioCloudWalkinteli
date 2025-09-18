@@ -22,31 +22,31 @@ const agents = [
   {
     id: 'aura',
     name: 'Aura',
-    specialty: 'Knowledge Curation',
-    description: 'Specializes in product info, rates, and policies.',
+    specialty: 'Curadoria de Conhecimento',
+    description: 'Especializada em informações sobre produtos, taxas e políticas.',
     icon: Database,
   },
   {
     id: 'nexus',
     name: 'Nexus',
-    specialty: 'Financial Analysis',
-    description: 'Provides financial insights, reports, and trends.',
+    specialty: 'Análise Financeira',
+    description: 'Fornece insights financeiros, relatórios e tendências.',
     icon: BarChart3,
   },
   {
     id: 'wise',
     name: 'Wise',
-    specialty: 'Financial Education',
-    description: 'Mentors on financial management and business.',
+    specialty: 'Educação Financeira',
+    description: 'Orienta sobre gestão financeira e negócios.',
     icon: GraduationCap,
   },
 ];
 
 const exampleQueries = [
-    "What's the fee for instant payments?",
-    "Analyze my sales for the last 6 months",
-    "How do I calculate profit margin?",
-    "How does cash flow work?",
+    "Qual a taxa para pagamentos instantâneos?",
+    "Analise minhas vendas dos últimos 6 meses",
+    "Como calculo a margem de lucro?",
+    "Como funciona o fluxo de caixa?",
 ];
 
 export default function Home() {
@@ -54,7 +54,7 @@ export default function Home() {
         {
             id: 'init',
             role: 'assistant',
-            content: 'Welcome! How can I assist you today? Feel free to ask me anything or try one of the examples below.',
+            content: 'Bem-vindo! Como posso ajudá-lo hoje? Sinta-se à vontade para me perguntar qualquer coisa ou experimentar um dos exemplos abaixo.',
         },
     ]);
     const [input, setInput] = useState('');
@@ -92,7 +92,7 @@ export default function Home() {
             setActiveAgent(agentName as AgentName);
             setMessages(prev => [...prev, agentMessage]);
         } catch (error) {
-            const errorMessage: Message = { id: crypto.randomUUID(), role: 'assistant', content: "I'm sorry, but I encountered an error. Please try again." };
+            const errorMessage: Message = { id: crypto.randomUUID(), role: 'assistant', content: "Desculpe, mas encontrei um erro. Por favor, tente novamente." };
             setMessages(prev => [...prev, errorMessage]);
         } finally {
             setIsLoading(false);
@@ -116,12 +116,12 @@ export default function Home() {
       <aside className="hidden flex-col border-r bg-card p-6 md:flex">
         <div className="flex items-center gap-3">
             <BrainCircuit className="h-10 w-10 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">AI Agents</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Infinity pai</h1>
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">Your intelligent agent system.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Seu sistema de agentes inteligentes.</p>
 
         <div className="mt-8 flex flex-1 flex-col gap-6">
-          <h2 className="text-lg font-semibold">Our Agents</h2>
+          <h2 className="text-lg font-semibold">Nossos Agentes</h2>
           {agents.map((agent) => (
             <div key={agent.id} className="flex items-start gap-4">
               <Avatar className={cn(
@@ -169,7 +169,7 @@ export default function Home() {
                     <p className="text-sm">{message.content}</p>
                     {message.role === 'assistant' && message.agentName && (
                         <div className="mt-3 flex items-center justify-end gap-2">
-                             <span className="text-xs text-muted-foreground">Confidence: High</span>
+                             <span className="text-xs text-muted-foreground">Confiança: Alta</span>
                         </div>
                     )}
                 </div>
@@ -197,7 +197,7 @@ export default function Home() {
             <Textarea
               value={input}
               onChange={handleInputChange}
-              placeholder="Ask a question about your finances, products, or business management..."
+              placeholder="Faça uma pergunta sobre suas finanças, produtos ou gestão de negócios..."
               className="min-h-[60px] resize-none pr-20"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
