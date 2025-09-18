@@ -2,14 +2,14 @@
 
 import { getEducationalContent } from '@/ai/flows/educational-content-for-pmes';
 import { getFinancialInsights } from '@/ai/flows/financial-insights-from-data';
-import { knowledgeCurationForInfinitePay } from '@/ai/flows/knowledge-curation-for-infinite-pay';
+import { knowledgeCuration } from '@/ai/flows/knowledge-curation-for-infinite-pay';
 
 type AgentName = 'aura' | 'nexus' | 'wise';
 
 const agentKeywords: Record<AgentName, string[]> = {
-  aura: ['taxa', 'pix', 'saque', 'maquininha', 'conta', 'cartão', 'empréstimo', 'suporte'],
-  nexus: ['analise', 'análise', 'vendas', 'receita', 'despesas', 'lucro', 'dados', 'relatório'],
-  wise: ['como', 'calcular', 'gestão', 'planejamento', 'fluxo', 'margem', 'precificação', 'aprender'],
+  aura: ['fee', 'pix', 'withdraw', 'card machine', 'account', 'card', 'loan', 'support'],
+  nexus: ['analyze', 'analysis', 'sales', 'revenue', 'expenses', 'profit', 'data', 'report'],
+  wise: ['how to', 'calculate', 'management', 'planning', 'cash flow', 'margin', 'pricing', 'learn'],
 };
 
 function classifyQuery(query: string): AgentName {
@@ -47,11 +47,11 @@ export async function processQuery(message: string): Promise<{ agentName: AgentN
   try {
     switch (agentName) {
       case 'aura':
-        const auraResponse = await knowledgeCurationForInfinitePay({ query: message });
+        const auraResponse = await knowledgeCuration({ query: message });
         responseText = auraResponse.answer;
         break;
       case 'nexus':
-        const nexusResponse = await getFinancialInsights({ financialData: message });
+        const nexusResponse = await getFinancialInsights({ query: message });
         responseText = nexusResponse.insights;
         break;
       case 'wise':
@@ -60,7 +60,7 @@ export async function processQuery(message: string): Promise<{ agentName: AgentN
         break;
       default:
         // Fallback to Aura if agent is not identified, though classifyQuery should always return one.
-        const defaultResponse = await knowledgeCurationForInfinitePay({ query: message });
+        const defaultResponse = await knowledgeCuration({ query: message });
         responseText = defaultResponse.answer;
         break;
     }

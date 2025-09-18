@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'InfiniteMind',
-  description: 'An intelligent agent system for InfinitePay.',
+  title: 'AI Agent System',
+  description: 'An intelligent agent system.',
 };
 
 export default function RootLayout({

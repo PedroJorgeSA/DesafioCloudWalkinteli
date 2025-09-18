@@ -1,12 +1,11 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-import { BarChart3, Bot, Database, GraduationCap, Loader2, Send, User } from 'lucide-react';
+import { BarChart3, Bot, Database, GraduationCap, Loader2, Send, User, BrainCircuit } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { processQuery } from './actions';
 
@@ -44,26 +43,18 @@ const agents = [
 ];
 
 const exampleQueries = [
-    "Qual a taxa para PIX na InfinitePay?",
-    "Analise minhas vendas dos últimos 30 dias",
-    "Como calcular margem de lucro?",
-    "Como funciona o fluxo de caixa?",
+    "What's the fee for instant payments?",
+    "Analyze my sales for the last 6 months",
+    "How do I calculate profit margin?",
+    "How does cash flow work?",
 ];
-
-const InfiniteMindLogo = () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
-        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M7 15L10 9L12 12L14 9L17 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-);
-
 
 export default function Home() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'init',
             role: 'assistant',
-            content: 'Welcome to InfiniteMind! How can I assist you today? Feel free to ask me anything or try one of the examples below.',
+            content: 'Welcome! How can I assist you today? Feel free to ask me anything or try one of the examples below.',
         },
     ]);
     const [input, setInput] = useState('');
@@ -124,10 +115,10 @@ export default function Home() {
     <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[320px_1fr]">
       <aside className="hidden flex-col border-r bg-card p-6 md:flex">
         <div className="flex items-center gap-3">
-            <InfiniteMindLogo />
-            <h1 className="text-2xl font-bold tracking-tight">InfiniteMind</h1>
+            <BrainCircuit className="h-10 w-10 text-primary" />
+            <h1 className="text-2xl font-bold tracking-tight">AI Agents</h1>
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">Your intelligent agent system for InfinitePay.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Your intelligent agent system.</p>
 
         <div className="mt-8 flex flex-1 flex-col gap-6">
           <h2 className="text-lg font-semibold">Our Agents</h2>
@@ -206,7 +197,7 @@ export default function Home() {
             <Textarea
               value={input}
               onChange={handleInputChange}
-              placeholder="Ask a question about your finances, InfinitePay products, or business management..."
+              placeholder="Ask a question about your finances, products, or business management..."
               className="min-h-[60px] resize-none pr-20"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {

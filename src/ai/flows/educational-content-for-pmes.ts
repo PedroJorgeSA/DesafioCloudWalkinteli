@@ -1,8 +1,8 @@
 'use server';
 /**
- * @fileOverview A financial education AI agent for Brazilian PMEs.
+ * @fileOverview A financial education AI agent for Small and Medium Enterprises.
  *
- * - getEducationalContent - A function that provides educational content tailored for Brazilian PMEs.
+ * - getEducationalContent - A function that provides educational content tailored for SMEs.
  * - GetEducationalContentInput - The input type for the getEducationalContent function.
  * - GetEducationalContentOutput - The return type for the getEducationalContent function.
  */
@@ -17,8 +17,8 @@ const GetEducationalContentInputSchema = z.object({
   userProfile: z
     .string()
     .optional()
-    .default('PME')
-    .describe('The user profile, defaults to PME (Brazilian Small and Medium Enterprise).'),
+    .default('SME')
+    .describe('The user profile, defaults to SME (Small and Medium Enterprise).'),
 });
 export type GetEducationalContentInput = z.infer<
   typeof GetEducationalContentInputSchema
@@ -43,7 +43,7 @@ const prompt = ai.definePrompt({
   name: 'educationalContentPrompt',
   input: {schema: GetEducationalContentInputSchema},
   output: {schema: GetEducationalContentOutputSchema},
-  prompt: `You are a financial educator specializing in providing guidance to Brazilian PMEs.  You will generate educational content on the following topic: {{{topic}}}. Focus on providing practical advice and insights relevant to the Brazilian market. Frame your response as rules or concepts related to the requested topics to improve financial literacy, and do not give investment advice.`,
+  prompt: `You are a financial educator specializing in providing guidance to Small and Medium Enterprises. You will generate educational content on the following topic: {{{topic}}}. Focus on providing practical advice and insights. Frame your response as rules or concepts related to the requested topics to improve financial literacy, and do not give investment advice.`,
 });
 
 const getEducationalContentFlow = ai.defineFlow(
